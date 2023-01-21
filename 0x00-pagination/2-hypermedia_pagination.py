@@ -106,11 +106,14 @@ class Server:
             next_page = None
             prev_page = None
         else:
-            # if page_size is greater than the length of the dataset or is equal to 0, set it to the length of the dataset
-            page_size = min(page_size, len(self.dataset())) if page_size > 0 else len(self.dataset())
+            # if page_size is greater than the length of the dataset or is
+            # equal to 0, set it to the length of the dataset
+            page_size = min(page_size, len(self.dataset())) if page_size > 0 \
+                else len(self.dataset())
             # calculate the total pages
             # var_1 = page_size + (len(self.dataset()) % page_size != 0)
-            total_pages = len(self.dataset()) // page_size + (len(self.dataset()) % page_size != 0)
+            total_pages = len(self.dataset()) // \
+                page_size + (len(self.dataset()) % page_size != 0)
             # check if there is a next page
             next_page = page + 1 if page * page_size < len(self.dataset()) \
                 else None
