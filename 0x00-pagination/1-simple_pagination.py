@@ -61,17 +61,13 @@ class Server:
         # Verify that both page and page_size are integers greater than 0
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-
         # Find the correct start and end indexes for the current page
         start_index, end_index = index_range(page, page_size)
-
         # Retrieve the dataset
         dataset = self.dataset()
-
         # Check if the end_index is greater than the length of the dataset
         # If it is, return an empty list
         if end_index > len(dataset):
             return []
-
         # Return the appropriate page of the dataset
         return dataset[start_index:end_index]
