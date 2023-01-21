@@ -37,7 +37,7 @@ class Server:
 
     def dataset(self) -> List[List]:
         """Cached dataset
-        
+
         Returns:
             List[List]: The list of rows representing the dataset.
         """
