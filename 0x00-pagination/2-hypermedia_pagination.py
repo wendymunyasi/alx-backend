@@ -32,17 +32,25 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        # a private attribute to store the dataset
         self.__dataset = None
 
     def dataset(self) -> List[List]:
         """Cached dataset
+        
+        Returns:
+            List[List]: The list of rows representing the dataset.
         """
+        # check if the dataset has not been loaded yet
         if self.__dataset is None:
+            # open the csv file
             with open(self.DATA_FILE) as f:
+                # read the csv file
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
+            # store the dataset in the private attribute
             self.__dataset = dataset[1:]
-
+        # return the dataset
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
