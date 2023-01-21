@@ -100,16 +100,22 @@ class Server:
         """
         # get the data by calling the get_page method
         data = self.get_page(page, page_size)
-        # calculate the page size
-        page_size = len(data)
-        # calculate the total pages
-        var_1 = page_size + (len(self.dataset()) % page_size != 0)
-        total_pages = len(self.dataset()) // var_1
-        # check if there is a next page
-        next_page = page + 1 if page_size * page < len(self.dataset()) \
-            else None
-        # check if there is a previous page
-        prev_page = page - 1 if page > 1 else None
+        if not data:
+            page_size = 0
+            total_pages = 0
+            next_page = None
+            prev_page = None
+        else:
+            # if page_size is greater than the length of the dataset or is equal to 0, set it to the length of the dataset
+            page_size = min(page_size, len(self.dataset())) if page_size > 0 else len(self.dataset())
+            # calculate the total pages
+            # var_1 = page_size + (len(self.dataset()) % page_size != 0)
+            total_pages = len(self.dataset()) // page_size + (len(self.dataset()) % page_size != 0)
+            # check if there is a next page
+            next_page = page + 1 if page * page_size < len(self.dataset()) \
+                else None
+            # check if there is a previous page
+            prev_page = page - 1 if page > 1 else None
         # return the dictionary containing the pagination data
         return {
             'page_size': page_size,
