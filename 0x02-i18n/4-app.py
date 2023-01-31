@@ -22,13 +22,13 @@ babel = Babel(app)
 
 
 @app.route("/")
-def index_3() -> str:
+def index_4() -> str:
     """The index function displays the home page of the web application.
 
     Returns:
         str: contents of the home page.
     """
-    return render_template("3-index.html")
+    return render_template("4-index.html")
 
 
 @babel.localeselector

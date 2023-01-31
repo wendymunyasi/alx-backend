@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module for task 4
+"""Module for task 6
 """
 from typing import Dict, Union
 from flask import Flask, render_template, request, g
@@ -29,13 +29,13 @@ users = {
 
 
 @app.route("/")
-def index_5() -> str:
+def index_6() -> str:
     """The index function displays the home page of the web application.
 
     Returns:
         str: contents of the home page.
     """
-    return render_template("5-index.html")
+    return render_template("6-index.html")
 
 
 @babel.localeselector
