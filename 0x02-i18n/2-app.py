@@ -32,7 +32,7 @@ def index_2() -> str:
 
 @babel.localeselector
 def get_locale() -> str:
-    """etermines the best match for the client's preferred language.
+    """Determines the best match for the client's preferred language.
 
     This function uses Flask's request object to access the client's preferred
     languages and the app's supported languages (defined in the Config class)
