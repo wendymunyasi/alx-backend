@@ -18,6 +18,9 @@ class Server:
 
     def dataset(self) -> List[List]:
         """Cached dataset
+
+        Returns:
+            List[List]: The list of rows representing the dataset.
         """
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
@@ -28,7 +31,11 @@ class Server:
         return self.__dataset
 
     def indexed_dataset(self) -> Dict[int, List]:
-        """Dataset indexed by sorting position, starting at 0
+        """Dataset indexed by sorting position, starting at 0.
+
+        Returns:
+            Dict[int, List]: The list of rows representing the dataset starting
+            at 0.
         """
         if self.__indexed_dataset is None:
             dataset = self.dataset()
@@ -50,7 +57,7 @@ class Server:
             to 10.
 
         Returns:
-            dict: A dictionary containing the following key-value pairs:
+            Dict: A dictionary containing the following key-value pairs:
                 index (int): the current start index of the return page.
                 next_index (int): the next index to query with.
                 page_size (int): the current page size

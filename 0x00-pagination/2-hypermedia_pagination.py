@@ -2,10 +2,10 @@
 """Module for task 1
 """
 import csv
-from typing import List
+from typing import Dict, List, Tuple
 
 
-def index_range(page, page_size):
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """Returns a tuple of size two containing a start index and an end
     index corresponding to the range of indexes to return in a list for the
     given pagination parameters.
@@ -15,7 +15,7 @@ def index_range(page, page_size):
         page_size (int): the number of items per page
 
     Returns:
-        tuple: start and end indexes of current page.
+        Tuple[int, int]: start and end indexes of current page.
     """
     # calculate start index by subtracting 1 from the current page number
     # and then multiplying by the page size
@@ -80,7 +80,7 @@ class Server:
         # Return the appropriate page of the dataset
         return dataset[start_index:end_index]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10):
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """Retrieves a specific page of the dataset of popular baby names
         along with pagination metadata.
 
@@ -91,7 +91,7 @@ class Server:
             to 10.
 
         Returns:
-            dict: A dictionary containing the following key-value pairs:
+            Dict: A dictionary containing the following key-value pairs:
                 page_size (int): the length of the returned dataset page.
                 page (int): the current page number.
                 data (List[List]): the dataset page.
