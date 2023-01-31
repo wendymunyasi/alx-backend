@@ -8,7 +8,7 @@ app.url_map.strict_slashes = False
 
 
 @app.route("/")
-def index():
+def index() -> str:
     """The index function displays the home page of the web application.
 
     Returns:

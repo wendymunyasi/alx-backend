@@ -21,7 +21,7 @@ app.config.from_object(Config)
 
 
 @app.route("/")
-def index_1():
+def index_1() -> str:
     """The index function displays the home page of the web application.
 
     Returns:

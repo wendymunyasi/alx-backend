@@ -21,7 +21,7 @@ app.config.from_object(Config)
 
 
 @app.route("/")
-def index_2():
+def index_2() -> str:
     """The index function displays the home page of the web application.
 
     Returns:
@@ -31,7 +31,7 @@ def index_2():
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """etermines the best match for the client's preferred language.
 
     This function uses Flask's request object to access the client's preferred
