@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module for task 0
+"""Module for task 1
 """
 from flask import Flask, render_template
 from flask_babel import Babel
