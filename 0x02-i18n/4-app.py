@@ -53,7 +53,7 @@ def get_locale() -> str:
     else:
         # Use request.accept_languages to get the best match
         best_match = request.accept_languages.best_match(supported_languages)
-        return best_match or 'en'
+        return best_match
 
 
 if __name__ == "__main__":
