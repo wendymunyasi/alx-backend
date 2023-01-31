@@ -14,8 +14,8 @@ def index():
     Returns:
         str: contents of the home page.
     """
-    return render_template("index.html")
+    return render_template("0-index.html")
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
