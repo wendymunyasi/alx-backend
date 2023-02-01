@@ -2,7 +2,7 @@
 """Module for task 4
 """
 from flask import Flask, render_template, request
-from flask_babel import Babel, localeselector
+from flask_babel import Babel
 
 app = Flask(__name__)
 
@@ -57,4 +57,4 @@ def get_locale() -> str:
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
