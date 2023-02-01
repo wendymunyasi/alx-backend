@@ -3,7 +3,7 @@
 """
 from typing import Dict, Union
 from flask import Flask, render_template, request, g
-from flask_babel import Babel, localeselector, timezoneselector
+from flask_babel import Babel
 import pytz
 
 app = Flask(__name__)
@@ -99,6 +99,9 @@ def before_request() -> None:
     g.user = user
 
 
+# Use the timezoneselector decorator to set the get_timezone function as the
+# timezone selector
+@babel.timezoneselector
 def get_timezone() -> str:
     """Return the user's preferred timezone.
 
@@ -125,13 +128,9 @@ def get_timezone() -> str:
     return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
-# Use the timezoneselector decorator to set the get_timezone function as the
-# timezone selector
-timezoneselector(get_timezone)
-
 # Register the before_request function to be executed before every request
 app.before_request(before_request)
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

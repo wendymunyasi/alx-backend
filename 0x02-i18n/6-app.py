@@ -3,7 +3,7 @@
 """
 from typing import Dict, Union
 from flask import Flask, render_template, request, g
-from flask_babel import Babel, localeselector
+from flask_babel import Babel
 
 app = Flask(__name__)
 
@@ -103,4 +103,4 @@ app.before_request(before_request)
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
