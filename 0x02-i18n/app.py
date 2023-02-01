@@ -66,16 +66,12 @@ def get_locale() -> str:
         # return it
         return locale
     # Locale from user settings
-    user = g.get('user', {})
-    if user.get('locale') and user['locale'] in supported_languages:
-        return user['locale']
-    # Locale from request header
-    # Use request.accept_languages to get the best match
-    best_match = request.accept_languages.best_match(supported_languages)
-    if locale:
-        return best_match
-    # Default locale
-    return app.config['BABEL_DEFAULT_LOCALE']
+    if g.user and g.user['locale'] in app.config["LANGUAGES"]:
+        return g.user['locale']
+    header_locale = request.headers.get('locale', '')
+    if header_locale in app.config["LANGUAGES"]:
+        return header_locale
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 def get_user() -> Union[Dict, None]:
@@ -113,24 +109,13 @@ def get_timezone() -> str:
     Returns:
         str: The user's preferred timezone.
     """
-    # Check if the URL parameters contain a timezone
-    timezone = request.args.get('timezone')
-    if timezone:
-        try:
-            # Validate the URL-provided timezone
-            return pytz.timezone(timezone)
-        except pytz.exceptions.UnknownTimeZoneError:
-            pass
-    # Check if the user has a preferred timezone
-    user = get_user()
-    if user and user.get('timezone'):
-        try:
-            # Validate the user's preferred timezone
-            return pytz.timezone(user.get('timezone'))
-        except pytz.exceptions.UnknownTimeZoneError:
-            pass
-    # Default to UTC
-    return app.config['BABEL_DEFAULT_TIMEZONE']
+    timezone = request.args.get('timezone', '').strip()
+    if not timezone and g.user:
+        timezone = g.user['timezone']
+    try:
+        return pytz.timezone(timezone).zone
+    except pytz.exceptions.UnknownTimeZoneError:
+        return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
 # Register the before_request function to be executed before every request
