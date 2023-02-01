@@ -60,17 +60,12 @@ def get_locale() -> str:
         # return it
         return locale
     # Locale from user settings
-    user = g.get('user', {})
-    if user.get('locale') and user['locale'] in supported_languages:
-        return user['locale']
-    # Locale from request header
-    # Use request.accept_languages to get the best match
-    best_match = request.accept_languages.best_match(supported_languages)
-    if locale:
-        return best_match
-    # Default locale
-    return app.config['BABEL_DEFAULT_LOCALE']
-
+    if g.user and g.user['locale'] in app.config["LANGUAGES"]:
+        return g.user['locale']
+    header_locale = request.headers.get('locale', '')
+    if header_locale in app.config["LANGUAGES"]:
+        return header_locale
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 def get_user() -> Union[Dict, None]:
     """Returns a user dictionary based on the given ID
