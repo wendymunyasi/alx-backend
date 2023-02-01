@@ -67,6 +67,7 @@ def get_locale() -> str:
         return header_locale
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
+
 def get_user() -> Union[Dict, None]:
     """Returns a user dictionary based on the given ID
 
