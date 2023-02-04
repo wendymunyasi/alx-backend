@@ -42,18 +42,19 @@ def get_locale() -> str:
     Returns:
         str: The locale code for the best match (e.g. "en", "fr").
     """
-    # Get the locale parameter from the incoming request
-    locale = request.args.get('locale')
     # Get list of supported languages from Config
     supported_languages = app.config["LANGUAGES"]
-    if locale and locale in supported_languages:
-        # If the locale parameter is present and is a supported locale,
-        # return it
-        return locale
-    else:
-        # Use request.accept_languages to get the best match
-        best_match = request.accept_languages.best_match(supported_languages)
-        return best_match
+    queries = request.query_string.decode('utf-8').split('&')
+    query_table = dict(map(
+        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
+        queries,
+    ))
+    if 'locale' in query_table:
+        if query_table['locale'] in app.config["LANGUAGES"]:
+            return query_table['locale']
+    # Use request.accept_languages to get the best match
+    best_match = request.accept_languages.best_match(supported_languages)
+    return best_match
 
 
 if __name__ == "__main__":
