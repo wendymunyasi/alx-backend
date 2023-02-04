@@ -3,8 +3,6 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <wendymunyasi@gmail.com>, 2023.
 #
-msgid ""
-msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: wendymunyasi@gmail.com\n"
 "POT-Creation-Date: 2023-02-01 23:01+0300\n"
