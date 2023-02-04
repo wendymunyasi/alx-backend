@@ -21,16 +21,6 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
-@app.route("/")
-def index_4() -> str:
-    """The index function displays the home page of the web application.
-
-    Returns:
-        str: contents of the home page.
-    """
-    return render_template("4-index.html")
-
-
 @babel.localeselector
 def get_locale() -> str:
     """Determines the best match for the client's preferred language.
@@ -42,19 +32,28 @@ def get_locale() -> str:
     Returns:
         str: The locale code for the best match (e.g. "en", "fr").
     """
+    # Get the locale parameter from the incoming request
+    locale = request.args.get('locale', None)
     # Get list of supported languages from Config
     supported_languages = app.config["LANGUAGES"]
-    queries = request.query_string.decode('utf-8').split('&')
-    query_table = dict(map(
-        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
-        queries,
-    ))
-    if 'locale' in query_table:
-        if query_table['locale'] in app.config["LANGUAGES"]:
-            return query_table['locale']
-    # Use request.accept_languages to get the best match
-    best_match = request.accept_languages.best_match(supported_languages)
-    return best_match
+    if locale and locale in supported_languages:
+        # If the locale parameter is present and is a supported locale,
+        # return it
+        return locale
+    else:
+        # Use request.accept_languages to get the best match
+        best_match = request.accept_languages.best_match(supported_languages)
+        return best_match
+
+
+@app.route("/")
+def index_4() -> str:
+    """The index function displays the home page of the web application.
+
+    Returns:
+        str: contents of the home page.
+    """
+    return render_template("4-index.html")
 
 
 if __name__ == "__main__":
