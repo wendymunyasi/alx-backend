@@ -28,7 +28,7 @@ job
     console.log('Notification job failed');
   })
   
-  .save(function(error) {
+  .save((error) => {
     if (error) {
       console.log('Error creating job:', error);
     }
