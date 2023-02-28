@@ -4,9 +4,9 @@
 // It logs to the console "Redis client not connected to the server: ERROR_MESSAGE"
 // when the connection to Redis does not work
 // Add two functions: setNewSchool and displaySchoolValue
-import redis from 'redis';
+import { createClient, print } from 'redis';
 
-const client = redis.createClient();
+const client = createClient();
 
 client.on('connect', () => {
   console.log('Redis client connected to the server');
@@ -21,7 +21,7 @@ client.on('error', (error) => {
 const setNewSchool = (schoolName, value) => {
   // redis.print function used as the callback for client.set which will
   // log the confirmation message
-  client.set(schoolName, value, redis.print);
+  client.set(schoolName, value, print);
 }
 // it should log to the console the value for the key passed as argument
 const displaySchoolValue = (schoolName) => {

@@ -10,18 +10,18 @@
 //  - publishMessage("Holberton Student #2 starts course", 200);
 //  - publishMessage("KILL_SERVER", 300);
 //  - publishMessage("Holberton Student #3 starts course", 400);
-import redis from 'redis';
+import { createClient } from 'redis';
 
 // Create Redis client
-const publisher = redis.createClient();
+const publisher = createClient();
 
 // On connect
-publisher.on('connect', function() {
+publisher.on('connect', () => {
   console.log('Redis client connected to the server');
 });
 
 // On error
-publisher.on('error', function(error) {
+publisher.on('error', (error) => {
   console.error(`Redis client not connected to the server: ${error}`);
 });
 

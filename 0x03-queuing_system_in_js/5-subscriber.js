@@ -3,10 +3,10 @@
 // When it receives message on the channel holberton school channel,
 // it should log the message to the console
 // When the message is KILL_SERVER, it should unsubscribe and quit
-import redis from 'redis';
+import { createClient } from 'redis';
 
 // Create Redis client
-const subscriber = redis.createClient();
+const subscriber = createClient();
 
 // On connect
 // subscriber.on('connect', function() { WORKS TOO

@@ -3,10 +3,10 @@
 // Using promisify, modify the function displaySchoolValue to use
 // ES6 async / await
 // Same result as 1-redis_op.js
-import redis from 'redis';
+import { createClient, print } from 'redis';
 import { promisify } from 'util';
 
-const client = redis.createClient();
+const client = createClient();
 
 client.on('connect', () => {
   console.log('Redis client connected to the server');
@@ -21,7 +21,7 @@ const setAsync = promisify(client.set).bind(client);
 const getAsync = promisify(client.get).bind(client);
 
 const setNewSchool = (schoolName, value) => {
-  client.set(schoolName, value, redis.print);
+  client.set(schoolName, value, print);
 };
 
 const displaySchoolValue = async (schoolName) => {
