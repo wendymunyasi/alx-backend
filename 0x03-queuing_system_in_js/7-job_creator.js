@@ -1,4 +1,4 @@
-#!/usr/bin/env node#
+#!/usr/bin/env node
 import { createQueue } from 'kue';
 
 const jobs = [
