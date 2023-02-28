@@ -1,4 +1,4 @@
-#!/usr/bin/env noded to the server: ERROR MESSAGE
+#!/usr/bin/env node
 // It should subscribe to the channel holberton school channel
 // When it receives message on the channel holberton school channel,
 // it should log the message to the console
