@@ -21,4 +21,5 @@ All of the following folders are projects done during the studies:
 | ------------ | ----------- |
 | [`0x00. Pagination`](https://github.com/wendymunyasi/alx-backend/tree/master/0x00-pagination) | It aims to learn about pagination in **Python language**.|
 | [`0x01. Caching`](https://github.com/wendymunyasi/alx-backend/tree/master/0x01-caching) | It aims to learn about caching systems in **Python language**.|
-| [`0x02. i18n`](https://github.com/wendymunyasi/alx-backend/tree/master/0x02-i18n) | It aims to learn about parametizing flask templates and locale in **Flask language**.|
+| [`0x02. i18n`](https://github.com/wendymunyasi/alx-backend/tree/master/0x02-i18n) | It aims to learn about parametizing flask templates and locale in **Flask**.|
+| [`0x03. Queuing System in JS`](https://github.com/wendymunyasi/alx-backend/tree/master/0x03-queuing_system_in_js) | It aims to learn about the queuing system in **JavaScript language**.|
